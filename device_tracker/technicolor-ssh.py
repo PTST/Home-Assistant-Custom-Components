@@ -12,7 +12,8 @@ import voluptuous as vol
 import homeassistant.helpers.config_validation as cv
 from homeassistant.components.device_tracker import (
     DOMAIN, PLATFORM_SCHEMA, DeviceScanner)
-from homeassistant.const import CONF_HOST, CONF_PASSWORD, CONF_USERNAME, CONF_PORT
+from homeassistant.const import (
+    CONF_HOST, CONF_PASSWORD, CONF_USERNAME, CONF_PORT)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -90,7 +91,10 @@ class TechnicolorSSHDeviceScanner(DeviceScanner):
         try:
             ssh = paramiko.SSHClient()
             ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            ssh.connect(hostname=self.host, username=self.username, password=self.password, port=self.port)
+            ssh.connect(hostname=self.host,
+                        username=self.username,
+                        password=self.password,
+                        port=self.port)
             stdin, stdout, stderr = ssh.exec_command("ip niegh")
 
             if stderr.read().decode('UTF-8'):

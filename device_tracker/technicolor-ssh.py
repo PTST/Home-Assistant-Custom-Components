@@ -125,8 +125,3 @@ class TechnicolorSSHDeviceScanner(DeviceScanner):
                     'host': self.host,
                     'status': match.group('status')}
         return devices
-
-
-if __name__ == "__main__":
-    tc = TechnicolorSSHDeviceScanner("77.213.105.158", "support", "2e63646a77", port=22022)
-    tc._update_info()
